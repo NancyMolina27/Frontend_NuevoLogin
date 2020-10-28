@@ -6,8 +6,9 @@
    </button> </a> </h2> 
 
  <form class="form-inline my-2 my-lg-0 float-right">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <button class="btn btn-outline-primary" type="submit">Buscar</button>
+  <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search"
+  name="filterRole" [(ngModel)]="filterRole" (focus)="page = 1">
+  
 </form>
 
 <br>
@@ -24,7 +25,8 @@
   </thead>
 
     <tbody>
-      <tr align="center" *ngFor="let rol of misroles">
+      <tr align="center" *ngFor="let rol of misroles | filterRoles:filterRole |
+      paginate: {itemsPerPage: 10, currentPage: page}">
         
         <td>{{rol.id}}</td>
         <td>{{rol.nombre}}</td>
@@ -34,7 +36,9 @@
           <a class="btn btn-outline-danger  btn-sm" style="margin: 1px;" (click)="deleteRol(rol.id)">Eliminar</a> 
         </td>
       </tr>
-      
     </tbody>
   </table>
+  <ul class="pagination justify-content-center">
+    <pagination-controls   previousLabel= "Anterior" nextLabel="Siguiente" (pageChange)="page = $event"></pagination-controls>
+   </ul>
 </div>

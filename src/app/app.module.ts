@@ -18,6 +18,9 @@ import { ViajesEditComponent } from './components/viajes-edit/viajes-edit.compon
 import { UsuariosEditComponent } from './components/usuarios-edit/usuarios-edit.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ResponsePasswordComponent } from './components/response-password/response-password.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterUserPipe } from './pipes/filter-user.pipe';
+import { FilterRolesPipe } from './pipes/filter-roles.pipe';
 
 @NgModule({
   declarations: [
@@ -35,13 +38,16 @@ import { ResponsePasswordComponent } from './components/response-password/respon
     ViajesEditComponent,
     UsuariosEditComponent,
     ResetPasswordComponent,
-    ResponsePasswordComponent
+    ResponsePasswordComponent,
+    FilterUserPipe,
+    FilterRolesPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

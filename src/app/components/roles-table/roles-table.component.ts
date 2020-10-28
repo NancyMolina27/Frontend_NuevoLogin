@@ -11,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
   providers: [UserService, RolesService]
 })
 export class RolesTableComponent implements OnInit {
+  filterRole = '';
+  page = 1;
   public identity;
   public token;
   public misroles: Array<Roles>;

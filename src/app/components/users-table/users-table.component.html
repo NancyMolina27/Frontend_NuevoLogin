@@ -8,8 +8,8 @@
    
  <br>      
     <form class="form-inline my-2 my-lg-0 float-right">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-primary" type="submit">Buscar</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar por email" aria-label="Search "
+      name="filterUsers" [(ngModel)]="filterUsers" (focus)="page = 1" >
     </form>
       
    <br>
@@ -30,7 +30,8 @@
   </thead>
     <tbody>
       
-        <tr align="center"  *ngFor="let user of usuarios">
+        <tr align="center"  *ngFor="let user of usuarios | filterUser: filterUsers |
+        paginate: {itemsPerPage: 10, currentPage: page} ">
           <td> {{user.id}} </td>
           <td> {{user.roles_id}}  </td>
           <td> {{user.name}} </td>
@@ -43,8 +44,9 @@
             <a class="btn btn-outline-danger  btn-sm" style="margin: 1px;" (click)="deleteUsuarios(user.id)">Eliminar</a> 
           </td> 
         </tr> 
-      
-      
     </tbody>
   </table>
+    <ul class="pagination justify-content-center">
+     <pagination-controls  previousLabel= "Anterior" nextLabel="Siguiente" (pageChange)="page = $event"></pagination-controls>
+    </ul>
 </div>

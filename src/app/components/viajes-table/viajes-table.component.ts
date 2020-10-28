@@ -11,6 +11,7 @@ import { Viaje } from 'src/app/models/viajes';
   providers: [UserService, ViajesService]
 })
 export class ViajesTableComponent implements OnInit {
+  page = 1;
   public token;
   public viaje: Viaje;
   // tslint:disable-next-line:variable-name

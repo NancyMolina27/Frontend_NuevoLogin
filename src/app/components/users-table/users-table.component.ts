@@ -10,6 +10,8 @@ import { User } from 'src/app/models/users';
   providers: [UserService]
 })
 export class UsersTableComponent implements OnInit {
+filterUsers = '';
+page = 1;
 public usuarios: Array<User>;
 public token;
 // tslint:disable-next-line:variable-name
