@@ -1,0 +1,50 @@
+<br>
+
+<div class="container-small">
+
+  <h2>Lista de Usuarios Registrados  <a href="usuarios">
+   <button type="button" class="btn btn-success float-right">Agregar Usuarios
+   </button> </a> </h2> 
+   
+ <br>      
+    <form class="form-inline my-2 my-lg-0 float-right">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-primary" type="submit">Buscar</button>
+    </form>
+      
+   <br>
+   <br>
+<p>
+  <table class="table table-bordered">
+  <thead>
+    <tr align="center" class="table-info" >
+      <th scope="col">ID</th>
+      <th scope="col">Rol</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Email</th>
+      <th scope="col"> Teléfono</th>
+      <th scope="col"  >Opciones</th>
+
+    </tr>
+  </thead>
+    <tbody>
+      
+        <tr align="center"  *ngFor="let user of usuarios">
+          <td> {{user.id}} </td>
+          <td> {{user.roles_id}}  </td>
+          <td> {{user.name}} </td>
+          <td> {{user.surname}} </td>
+          <td> {{user.email}} </td>
+          <td> {{user.telefono}} </td>
+          
+          <td> 
+            <a class="btn btn-outline-success btn-sm" routerLink="/usuarios-edit/{{user.id}}" > Editar</a>
+            <a class="btn btn-outline-danger  btn-sm" style="margin: 1px;" (click)="deleteUsuarios(user.id)">Eliminar</a> 
+          </td> 
+        </tr> 
+      
+      
+    </tbody>
+  </table>
+</div>

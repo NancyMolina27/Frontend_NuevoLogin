@@ -1,0 +1,47 @@
+<br>
+        <div class="container-small">
+        
+          <h2>Lista de Viajes Registrados  <a href="viajes">
+           <button type="button" class="btn btn-success float-right">Agregar Viaje
+           </button> </a> </h2> 
+         <br>
+        
+          <table class="table table-bordered">
+          <thead>
+            <tr align="center" class="table-success">
+              <th scope="col">ID</th>
+              <th scope="col">Alta</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Operador</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Hora</th>
+              <th scope="col">Origen</th>
+              <th scope="col">Destino</th>
+              <th scope="col">Contenido</th>
+              <th scope="col">Comentarios</th>
+              <th scope="col">Opciones</th>
+            </tr>
+          </thead>
+          
+            <tbody>
+              <tr align="center" *ngFor="let viaje of viaje">
+                
+                <td>{{viaje.id}}</td>
+                <td>{{viaje.user_id}}</td>
+                <td>{{viaje.cliente}}</td>
+                <td>{{viaje.operador}}</td>
+                <td>{{viaje.fecha}}</td>
+                <td>{{viaje.hora}}</td>
+                <td>{{viaje.lugar_recibido}}</td>
+                <td>{{viaje.lugar_destino}}</td>
+                <td>{{viaje.contenido}}</td>
+                <td>{{viaje.comentarios}}</td>
+                <td>
+                  <a class="btn btn-outline-success btn-sm" routerLink="/viajes-edit/{{viaje.id}}" > Editar</a>
+                  <a class="btn btn-outline-danger  btn-sm" style="margin: 1px;" (click)="deleteViaje(viaje.id)">Eliminar</a> 
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>

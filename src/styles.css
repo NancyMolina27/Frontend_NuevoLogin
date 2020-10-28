@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+
+.ng-invalid:not(form)
+{
+  border-right:4px double  red;
+}
+
+.ng-valid:not(form)
+{
+  border-right:4px ridge green;
+}
+

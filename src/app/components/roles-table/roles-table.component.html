@@ -1,0 +1,40 @@
+<br>
+<div class="container-small">
+
+  <h2>Lista de Roles Registrados  <a href="roles">
+   <button type="button" class="btn btn-success float-right">Agregar Rol
+   </button> </a> </h2> 
+
+ <form class="form-inline my-2 my-lg-0 float-right">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-primary" type="submit">Buscar</button>
+</form>
+
+<br>
+<br>
+
+  <table class="table table-bordered">
+  <thead>
+    <tr align="center" class="table-success">
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th scope="col"  >Opciones</th>
+    </tr>
+  </thead>
+
+    <tbody>
+      <tr align="center" *ngFor="let rol of misroles">
+        
+        <td>{{rol.id}}</td>
+        <td>{{rol.nombre}}</td>
+        <td>{{rol.description}}</td>
+        <td>
+          <a class="btn btn-outline-success btn-sm" routerLink="/roles-edit/{{rol.id}}" > Editar</a>
+          <a class="btn btn-outline-danger  btn-sm" style="margin: 1px;" (click)="deleteRol(rol.id)">Eliminar</a> 
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>

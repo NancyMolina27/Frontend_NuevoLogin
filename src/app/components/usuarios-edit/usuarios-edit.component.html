@@ -1,0 +1,89 @@
+<div class="mt-4 col-8 offset-2">
+  <div class="card border-info mb-3">
+    <div class="card-header">
+      <h3 class="card-title text-center" >Registro de Usuarios</h3>
+    </div>
+    <div class="card-body">
+
+
+      <div class="alert alert-success" *ngIf="status_user == 'success'">
+        El registro se completado correctamente. 
+      </div>
+
+      <div class="alert alert-danger" *ngIf="status_user == 'error'">
+        El registro no se completo correctamente, verifica tus datos. 
+      </div>
+
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+        
+        <div class="form-group row">
+          <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+          <div class="col-sm-10">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" 
+             [(ngModel)]="user.name"  readonly >
+          </div>
+         
+        </div>
+        
+        <div class="form-group row">
+          <label for="surname" class="col-sm-2 col-form-label">Apellido</label>
+          <div class="col-sm-10">
+            <input type="text" name="surname" class="form-control" id="surname" placeholder="Apellido" 
+           #surname="ngModel" [(ngModel)]="user.surname"  readonly>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="email" class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" name="email" class="form-control" id="email" placeholder="Email" 
+            #email="ngModel" [(ngModel)]="user.email"  readonly>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="password" class="col-sm-2 col-form-label"> Contraseña</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña"
+            #password="ngModel" [(ngModel)]="user.password"  readonly >
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <label for="role" class="col-sm-2 col-form-label">Selecciona un rol</label>
+          <div class="col-sm-10">
+
+            <select class="form-control" required    id="role"
+             [(ngModel)]="user.roles_id" name="role" >
+              <option selected disabled >Elige un rol para este usuario...</option>
+              <option value={{rol.id}} *ngFor="let rol of misroles"> {{rol.nombre}} </option>
+            </select>
+            <div class="alert alert-danger" [hidden]="!error.roles_id">
+              {{error.roles_id}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="telefono" class="col-sm-2 col-form-label">Teléfono</label>
+          <div class="col-sm-10">
+            <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Teléfono" 
+            #telefono="ngModel" [(ngModel)]="user.telefono"  required>
+            <div class="alert alert-danger" [hidden]="!error.telefono">
+              {{error.telefono}}
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group row">
+          <div class="col-sm-10 offset-2"> 
+             <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid">Registrar</button>
+            </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
