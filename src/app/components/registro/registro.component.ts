@@ -4,6 +4,7 @@ import { User } from './../../models/users';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -12,7 +13,7 @@ import { UserService } from './../../services/user.service';
   providers: [UserService]
 })
 export class RegistroComponent implements OnInit {
-
+  public identity;
   public title: string;
   public user: User;
   // tslint:disable-next-line:variable-name
@@ -25,11 +26,15 @@ export class RegistroComponent implements OnInit {
     private userServices: UserService,
     private rolesservices: RolesService
   ) {
+    this.identity = this.userServices.getIdentity();
     this.getRoles();
     this.user = new User( 1, '', '', '', '', '', '');
   }
 
   ngOnInit(): void {
+    if (this.identity == null){
+      this.router.navigate(['login']);
+    }
   }
 
   onSubmit(registerForm): void

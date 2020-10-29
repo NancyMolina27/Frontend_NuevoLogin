@@ -3,6 +3,7 @@ import { RolesService } from './../../services/roles.service';
 import { Roles } from './../../models/roles';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-roles-table',
@@ -48,17 +49,39 @@ export class RolesTableComponent implements OnInit {
   // tslint:disable-next-line:typedef
   deleteRol(id)
   {
-    if (confirm ('¿Seguro desea elimar este registro?')){
-    this.rolesservices.delete(this.token, id).subscribe(
-      response => {
-        alert('Eliminado con éxito');
-        this.getRol();
-      },
-      error => {
-        console.log(error);
+    Swal.fire({
+      title: 'Eliminar registro',
+      text: '¿Seguro desea elimar este registro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.rolesservices.delete(this.token, id).subscribe(
+          response => {
+            this.getRol();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+        Swal.fire(
+          'Eliminado!',
+          'El registro ha sido eliminado correctamente',
+          'success'
+        );
+      }else
+      {
+        Swal.fire(
+          'Registro no eliminado!',
+          'El registro no ha sido eliminado',
+          'error'
+        );
       }
-    );
-    }
-  }
+    });
 
+  }
 }

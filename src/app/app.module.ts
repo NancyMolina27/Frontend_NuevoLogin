@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterUserPipe } from './pipes/filter-user.pipe';
 import { FilterRolesPipe } from './pipes/filter-roles.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +48,10 @@ import { FilterRolesPipe } from './pipes/filter-roles.pipe';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

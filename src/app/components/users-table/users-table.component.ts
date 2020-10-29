@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -48,17 +49,39 @@ public user: Array<User>;
   }
   deleteUsuarios(id): void
   {
-    if (confirm ('¿Seguro desea elimar este registro?')){
-    this.userservices.delete(this.token, id).subscribe(
-      response => {
-        alert('Eliminado con éxito');
-        this.getUsers();
-      },
-      error => {
-        console.log(error);
+    Swal.fire({
+      title: 'Eliminar registro',
+      text: '¿Seguro desea elimar este registro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userservices.delete(this.token, id).subscribe(
+          response => {
+            this.getUsers();
+          },
+          error => {
+            console.log(error);
+          }
+        );
+        Swal.fire(
+          'Eliminado!',
+          'El registro ha sido eliminado correctamente',
+          'success'
+        );
+      }else
+      {
+        Swal.fire(
+          'Registro no eliminado!',
+          'El registro no ha sido eliminado',
+          'error'
+        );
       }
-    );
-    }
+    });
   }
 
   getClientes(): void {

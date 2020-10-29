@@ -10,7 +10,7 @@ import { User } from 'src/app/models/users';
   selector: 'app-viajes',
   templateUrl: './viajes.component.html',
   styleUrls: ['./viajes.component.css'],
-  providers: [UserService, RolesService]
+  providers: [UserService, RolesService, ViajesService]
 })
 export class ViajesComponent implements OnInit {
   public identity;
@@ -31,14 +31,15 @@ export class ViajesComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.getClientes();
-    this.getOperador();
-
     if (this.identity == null){
       this.router.navigate(['login']);
     }else{
+
+    this.getClientes();
+    this.getOperador();
+
       // Crear viaje
-      this.viaje = new Viaje(0, '', '', '', '', '', '', '', '', null, null);
+    this.viaje = new Viaje(0, '', '', '', '', '', '', '', '', null, null);
     }
   }
 

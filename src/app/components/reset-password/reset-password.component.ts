@@ -1,5 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reset-password',
@@ -29,6 +30,13 @@ public form = {
   handleResponse(res): void
     {
       console.log(res);
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Correo enviado',
+        showConfirmButton: false,
+        timer: 1500
+      });
       /* this.notify.success(res.data, {timeout: 0}); */
       this.form.email = null;
     }

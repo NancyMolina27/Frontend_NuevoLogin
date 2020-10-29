@@ -3,6 +3,7 @@ import { UserService } from './../../services/user.service';
 import { RolesService } from './../../services/roles.service';
 import { Roles } from './../../models/roles';
 import { Router, ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-roles',
@@ -40,6 +41,11 @@ public error: any = [];
 
   onSubmit(form): void
   {
+    Swal.fire({
+      icon: 'success',
+      title: 'Alta de registros',
+      text: 'Registro guardado correctamente',
+    });
     this.rolesservices.create(this.token, this.roles).subscribe(
       respose =>
       {

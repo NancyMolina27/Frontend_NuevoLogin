@@ -1,6 +1,7 @@
 import { UserService } from './../../services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-response-password',
@@ -31,6 +32,13 @@ public error: any = [];
 
   onSubmit(): void
   {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Contraseña cambiada correctamente',
+      showConfirmButton: false,
+      timer: 1500
+    });
     this.userservices.changePassword(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
