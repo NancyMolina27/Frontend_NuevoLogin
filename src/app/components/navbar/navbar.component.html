@@ -1,5 +1,4 @@
 <header id="header">
-  
 <div class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"> 
@@ -14,20 +13,10 @@
         <li class="nav-item">
           <a class="navbar-brand" routerLink="usuarios-table" >Usuarios</a>
           
-          
           <a class="navbar-brand" routerLink="roles-table"  >Roles</a>
           <a class="navbar-brand" href="viajes-table"  >Viajes</a>
         </li>
       </ul>
-
-        <ul class="nav nav-tabs" >
-          <li class="nav-item">
-            <a class="navbar-brand">{{identity.name + ' ' + identity.surname }}</a>
-            <a class="navbar-brand" [routerLink]="['logout',1]" >Cerrar sesión</a>
-          </li>
-        </ul>
-      </div>
-    
 
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
@@ -56,6 +45,15 @@
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
     </li>
+
+        <ul class="nav nav-tabs" >
+          <li class="nav-item">
+            <a class="navbar-brand">{{identity.name + ' ' + identity.surname}}</a>
+            <a class="navbar-brand">{{identity.roles_id}}   </a>
+            <a class="navbar-brand" [routerLink]="['logout',1]" >Cerrar sesión</a>
+          </li>
+        </ul> 
+  </div>
 
 
     <div class="container" id="menu" *ngIf="!identity">

@@ -41,28 +41,53 @@ public error: any = [];
 
   onSubmit(form): void
   {
-    Swal.fire({
-      icon: 'success',
-      title: 'Alta de registros',
-      text: 'Registro guardado correctamente',
-    });
-    this.rolesservices.create(this.token, this.roles).subscribe(
-      respose =>
-      {
-        if (respose.status === 'success')
+
+      Swal.fire({
+        title: '¿Desea guardar este registro?',
+        text: 'Se guardara el registro',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, guardar',
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+        this.rolesservices.create(this.token, this.roles).subscribe(
+          respose =>
+          {
+            if (respose.status === 'success')
+            {
+              this.roles = respose.rol;
+              this.status_rol = 'success';
+              this.router.navigate(['roles-table']);
+            }else{
+              this.status_rol = 'error';
+            }
+          }, error => {
+            Swal.fire(
+              'Registro no se pudo guardar!',
+              'El registro no ha sido guardado, Nombre duplicado',
+              'error'
+            );
+            this.handleError(error);
+            this.status_rol = 'error';
+          }
+          );
+        Swal.fire(
+            'Registro Guardado!',
+            'El registro ha sido guardado correctamente',
+            'success'
+          );
+        }else
         {
-          this.roles = respose.rol;
-          this.status_rol = 'success';
-          this.router.navigate(['roles-table']);
-        }else{
-          this.status_rol = 'error';
+          Swal.fire(
+            'Registro no guardado!',
+            'El registro no ha sido guardado',
+            'error'
+          );
         }
-      },
-      error => {
-        this.handleError(error);
-        this.status_rol = 'error';
-      }
-    );
+      });
   }
 
   handleError(error): void

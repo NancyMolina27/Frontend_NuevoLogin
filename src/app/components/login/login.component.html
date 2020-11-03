@@ -6,13 +6,6 @@
 <div class="card-body"  >
   <form #loginForm=ngForm (ngSubmit)="onSubmit(loginForm)">
        
-    <div class="alert alert-success" *ngIf="status == 'success'">
-      Te has identificado correctamente. 
-    </div>
-
-    <div class="alert alert-danger" *ngIf="status == 'error'">
-      Datos erroneos, verificar email o contraseña incorrectos!
-    </div>
 
         <div class="form-group" >
           <label for="email" class="col-sm-10 col-form-label">Email</label>
@@ -25,7 +18,7 @@
         <div class="form-group ">
           <label for="password" class="col-sm-10 col-form-label">Contraseña</label>
           <div class="col-sm-10">
-            <input type="password" name="password"  class="form-control" id="password" placeholder="Contraseña" 
+            <input type="password" name="password"  class="form-control" id="password" placeholder="Contraseña" pattern=".{6,}"
           #password="ngModel" [(ngModel)]="user.password" required>
           </div>
         </div>

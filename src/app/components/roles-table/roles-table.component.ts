@@ -50,8 +50,8 @@ export class RolesTableComponent implements OnInit {
   deleteRol(id)
   {
     Swal.fire({
-      title: 'Eliminar registro',
-      text: '¿Seguro desea elimar este registro?',
+      title: '¿Seguro desea elimar este registro?',
+      text: 'Se eliminaran los usuarios que cuentan con este rol',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

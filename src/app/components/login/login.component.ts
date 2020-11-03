@@ -2,6 +2,7 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/users';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -30,37 +31,55 @@ export class LoginComponent implements OnInit {
   // tslint:disable-next-line:typedef
   onSubmit(form)
   {
-   this.userService.signup(this.user).subscribe(
-     response => {
-       // token
-       if (response.status !== 'error')
-       {
-         this.status = 'success';
-         this.token = response;
-         localStorage.setItem('token', this.token);
-
-          // usuario identificado
-         this.userService.signup(this.user, true).subscribe(
+    this.userService.signup(this.user).subscribe(
+      response => {
+      // token
+        if (response.status !== 'error')
+        {
+          this.status = 'success';
+          this.token = response;
+          localStorage.setItem('token', this.token);
+        // usuario identificado
+          this.userService.signup(this.user, true).subscribe(
             // tslint:disable-next-line:no-shadowed-variable
             response => {
               this.identity = response;
               localStorage.setItem('identity', JSON.stringify(this.identity));
-              // Redireccion
-
+              Swal.fire(
+                'Inicio de Sesión',
+                '¡Bienvenido!',
+                'success'
+              );
+        // Redireccion
               this.router.navigate(['home']);
-              },
-              error => {
-                console.log(error as any);
-              }
-            );
-        } else {
-          this.status = 'error';
-        }
-     },
-     error => {
-       console.log(error as any);
-     }
-   );
+          },
+            error => {
+              Swal.fire(
+                'Inicio de Sesión Incorrecto!',
+                '¡Verifica tus datos!',
+                'error'
+              );
+              console.log(error as any);
+          }
+                    );
+                } else {
+                  Swal.fire(
+                    'Inicio de Sesión Incorrecto!',
+                    '¡Verifica tus datos!',
+                    'error'
+                  );
+                  this.status = 'error';
+                }
+            },
+            error => {
+              Swal.fire(
+                'Inicio de Sesión Incorrecto!',
+                '¡Verifica tus datos!',
+                'error'
+              );
+              console.log(error as any);
+            }
+          );
   }
 
   // tslint:disable-next-line:typedef
@@ -72,6 +91,8 @@ export class LoginComponent implements OnInit {
 
         if (logout === 1)
         {
+          Swal.fire('Sesión finalizada');
+
           localStorage.removeItem('identity');
           localStorage.removeItem('token');
           this.identity = null;
@@ -83,5 +104,7 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+
+
 
 }

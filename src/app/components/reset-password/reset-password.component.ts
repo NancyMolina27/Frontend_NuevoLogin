@@ -29,7 +29,6 @@ public form = {
 
   handleResponse(res): void
     {
-      console.log(res);
       Swal.fire({
         position: 'top-end',
         icon: 'success',
