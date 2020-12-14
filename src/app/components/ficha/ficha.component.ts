@@ -4,14 +4,16 @@ import { RolesService } from './../../services/roles.service';
 import { Roles } from './../../models/roles';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/users';
+import * as jspdf from 'jspdf';
+import * as html2canvas from 'html2canvas';
 
 @Component({
-  selector: 'app-usuarios-edit',
-  templateUrl: './usuarios-edit.component.html',
-  styleUrls: ['./usuarios-edit.component.css'],
-  providers: [UserService, RolesService]
+  selector: 'app-ficha',
+  templateUrl: './ficha.component.html',
+  styleUrls: ['./ficha.component.css']
 })
-export class UsuariosEditComponent implements OnInit {
+export class FichaComponent implements OnInit {
+
   public user: User;
   public token;
   public identity;
@@ -96,4 +98,18 @@ export class UsuariosEditComponent implements OnInit {
   handleError(error): void {
     this.error = error.error.errors;
   }
+
+
+exportAsPDF(divId): void
+    {
+        const data = document.getElementById('divId');
+        html2canvas(data).then(canvas => {
+        const contentDataURL = canvas.toDataURL('image/png');
+        const pdf = new jspdf.jsPDF('l', 'cm', 'a4'); // Generates PDF in landscape mode
+        // let pdf = new jspdf('p', 'cm', 'a4'); Generates PDF in portrait mode
+        pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);
+        pdf.save('Filename.pdf');
+      });
+    }
+
 }

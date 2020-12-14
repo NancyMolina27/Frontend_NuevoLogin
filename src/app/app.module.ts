@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +20,19 @@ import { ResponsePasswordComponent } from './components/response-password/respon
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterUserPipe } from './pipes/filter-user.pipe';
 import { FilterRolesPipe } from './pipes/filter-roles.pipe';
+import { FilterRastreoPipe } from './pipes/filter-rastreo.pipe';
+import { RastreoformsComponent } from './components/rastreoforms/rastreoforms.component';
+import { BrowserModule } from '@angular/platform-browser';
+
+
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatSliderModule} from '@angular/material/slider';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule } from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import { FichaComponent } from './components/ficha/ficha.component';
 
 
 @NgModule({
@@ -42,6 +54,9 @@ import { FilterRolesPipe } from './pipes/filter-roles.pipe';
     ResponsePasswordComponent,
     FilterUserPipe,
     FilterRolesPipe,
+    FilterRastreoPipe,
+    RastreoformsComponent,
+    FichaComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,9 +64,17 @@ import { FilterRolesPipe } from './pipes/filter-roles.pipe';
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatProgressBarModule,
+    MatCardModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
 
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
+

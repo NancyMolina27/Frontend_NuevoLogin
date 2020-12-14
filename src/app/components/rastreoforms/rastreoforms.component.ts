@@ -5,23 +5,16 @@ import { ViajesService } from './../../services/viajes.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/users';
 
-@Component({
-  selector: 'app-viajes-edit',
-  templateUrl: 'viajes-edit.component.html',
-  styleUrls: ['./viajes-edit.component.css'],
-  providers: [UserService, ViajesService]
-})
-export class ViajesEditComponent implements OnInit {
-  public viajes = {
-    cliente: null,
-    operador: null,
-    fecha: null,
-    hora: null,
-    lugar_recibido: null,
-    lugar_destino: null,
-    contenido: null
 
-   };
+import {ThemePalette} from '@angular/material/core';
+import {ProgressBarMode} from '@angular/material/progress-bar';
+
+@Component({
+  selector: 'app-rastreoforms',
+  templateUrl: './rastreoforms.component.html',
+  styleUrls: ['./rastreoforms.component.css']
+})
+export class RastreoformsComponent implements OnInit {
   public identity;
   public viaje: Viaje;
   public token;
@@ -29,6 +22,20 @@ export class ViajesEditComponent implements OnInit {
   public status_viaje;
   public misuser: Array<User>;
   public user: Array<User>;
+
+  color: ThemePalette = 'accent';
+  mode: ProgressBarMode = 'buffer';
+  value = 0;
+  bufferValue = 0;
+
+  // tslint:disable-next-line:typedef
+  formatLabel(value: number) {
+    if (value >= 1000) {
+      return Math.round(value / 1000);
+    }
+    return value;
+  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -40,8 +47,6 @@ export class ViajesEditComponent implements OnInit {
    }
 
   ngOnInit(): void {
- /*    this.getClientes();
-    this.getOperador(); */
 
     if (this.identity == null){
       this.router.navigate(['login']);
@@ -61,7 +66,6 @@ export class ViajesEditComponent implements OnInit {
       response => {
         if (response.status === 'success'){
           this.viaje = response.viaje;
-          console.log(response);
         }
         else
         {
@@ -96,26 +100,5 @@ export class ViajesEditComponent implements OnInit {
       }
     );
   }
-
-/*   getClientes(): void {
-    this.userservices.getClientes().subscribe(
-      response => {
-          this.misuser = response.users;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  getOperador(): void {
-    this.userservices.getOperador().subscribe(
-      response => {
-          this.user = response.users;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  } */
 
 }

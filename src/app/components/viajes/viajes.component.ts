@@ -5,6 +5,7 @@ import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Viaje } from 'src/app/models/viajes';
 import { User } from 'src/app/models/users';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-viajes',
@@ -13,13 +14,6 @@ import { User } from 'src/app/models/users';
   providers: [UserService, RolesService, ViajesService]
 })
 export class ViajesComponent implements OnInit {
-  public identity;
-  public token;
-  public viaje: Viaje;
-  public misuser: Array<User>;
-  public user: Array<User>;
-  // tslint:disable-next-line:variable-name
-  public status_viaje;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -29,6 +23,16 @@ export class ViajesComponent implements OnInit {
     this.identity = this.userservices.getIdentity();
     this.token = this.userservices.getToken();
     }
+  public identity;
+  public token;
+  public viaje: Viaje;
+  public misuser: Array<User>;
+  public user: Array<User>;
+
+  public userrol: Array<User>;
+  // tslint:disable-next-line:variable-name
+  public status_viaje;
+  filterRastreos = '';
 
   ngOnInit(): void {
     if (this.identity == null){
@@ -54,13 +58,28 @@ export class ViajesComponent implements OnInit {
           this.status_viaje = 'success';
           this.router.navigate(['viajes-table']);
         }else{
+          Swal.fire(
+            'Registro no se pudo guardar!',
+            'El registro no ha sido guardado, Nombre duplicado',
+            'error'
+          );
           this.status_viaje = 'error';
         }
       },
       error => {
+        Swal.fire(
+          'Registro no se pudo guardar!',
+          'El registro no ha sido guardado, Nombre duplicado',
+          'error'
+        );
         console.log (error as any);
         this.status_viaje = 'error';
       }
+    );
+    Swal.fire(
+      'Registro Guardado!',
+      'El registro ha sido guardado correctamente',
+      'success'
     );
   }
   getClientes(): void {
@@ -83,5 +102,6 @@ export class ViajesComponent implements OnInit {
       }
     );
   }
+
 
 }

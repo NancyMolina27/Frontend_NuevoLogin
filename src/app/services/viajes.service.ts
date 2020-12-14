@@ -26,9 +26,11 @@ export class ViajesService {
         return this.http.post(this.url + 'viajes', params, {headers});
       }
 
-  getViajes(): Observable<any>
+  getViajes(Token): Observable<any>
   {
-    const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+                                          .set('Authorization', Token);
+   /*  const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'); */
     return this.http.get(this.url + 'viajes', {headers});
   }
 
@@ -50,4 +52,10 @@ export class ViajesService {
     .set('Authorization', token);
     return this.http.delete(this.url + 'viajes/' + id, {headers});
   }
+
+  buscar(id): Observable<any>
+  {
+    return this.http.get(this.url + 'viajes/' + id);
+  }
+
 }

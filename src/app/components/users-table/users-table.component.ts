@@ -1,3 +1,4 @@
+import { Roles } from './../../models/roles';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
@@ -15,22 +16,25 @@ filterUsers = '';
 page = 1;
 public usuarios: Array<User>;
 public token;
+public identity;
 // tslint:disable-next-line:variable-name
 public status_user;
-public misuser: Array<User>;
-public user: Array<User>;
+public userrol: Array<Roles>;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private userservices: UserService
   ) {
     this.token = this.userservices.getToken();
+    this.identity = this.userservices.getIdentity();
    }
 
   ngOnInit(): void {
     this.getUsers();
-    this.getClientes();
-    this.getOperador();
+
+    if (this.identity == null){
+      this.router.navigate(['login']);
+    }
   }
 
   // tslint:disable-next-line:typedef
@@ -84,20 +88,10 @@ public user: Array<User>;
     });
   }
 
-  getClientes(): void {
-    this.userservices.getClientes().subscribe(
+getRol(): void {
+    this.userservices.getRol().subscribe(
       response => {
-          this.misuser = response.users;
-      },
-      error => {
-        console.log(error);
-      }
-    );
-  }
-  getOperador(): void {
-    this.userservices.getOperador().subscribe(
-      response => {
-          this.user = response.users;
+          this.userrol = response.users;
       },
       error => {
         console.log(error);

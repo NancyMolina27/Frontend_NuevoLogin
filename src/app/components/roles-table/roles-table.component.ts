@@ -29,6 +29,10 @@ export class RolesTableComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    if (this.identity == null){
+      this.router.navigate(['login']);
+    }
+
     this.getRol();
   }
 

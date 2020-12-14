@@ -15,6 +15,7 @@ export class RoleseditComponent implements OnInit {
 
   public roles: Roles;
   public token;
+  public identity;
   // tslint:disable-next-line:variable-name
   public status_rol;
   public error: any = [];
@@ -24,14 +25,19 @@ export class RoleseditComponent implements OnInit {
     private userservices: UserService,
     private rolesservices: RolesService
     ) {
+      this.identity = this.userservices.getIdentity();
       this.token = this.userservices.getToken();
      }
 
   ngOnInit(): void {
+    if (this.identity == null){
+      this.router.navigate(['login']);
+    }else{
     this.route.params.subscribe(params => {
       const id = +params.id;
       this.getRol(id);
   });
+}
   }
 
   // tslint:disable-next-line:typedef
@@ -75,6 +81,11 @@ export class RoleseditComponent implements OnInit {
             }
             else
             {
+              Swal.fire(
+                'Registro no se pudo editar!',
+                'El registro no ha sido editado, Nombre duplicado',
+                'error'
+              );
               this.handleError(this.error);
               this.status_rol = 'error';
               this.router.navigate(['home']);
@@ -84,7 +95,7 @@ export class RoleseditComponent implements OnInit {
           {
             Swal.fire(
               'Registro no se pudo editar!',
-              'El registro no ha sido editado, Nombre duplicado',
+              'El registro no ha sido editado, nombre duplicado',
               'error'
             );
             this.handleError(error);
@@ -109,10 +120,10 @@ export class RoleseditComponent implements OnInit {
 
   }
 
-  handleError(error): void
+  handleError(error: any): any
   {
     this.error = error.error.errors;
+ }
 
-  }
 
 }

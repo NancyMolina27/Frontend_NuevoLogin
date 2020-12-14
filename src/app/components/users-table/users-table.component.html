@@ -1,14 +1,13 @@
 <br>
 
-<div class="container-small">
-
-  <h2>Lista de Usuarios Registrados  <a href="usuarios">
+<div class="container-lg">
+  <h1>Lista de Usuarios Registrados  <a href="usuarios"> 
    <button type="button" class="btn btn-success float-right">Agregar Usuarios
-   </button> </a> </h2> 
+   </button> </a> </h1> 
    
  <br>      
     <form class="form-inline my-2 my-lg-0 float-right">
-      <input class="form-control mr-sm-2" type="search" placeholder="Buscar por email" aria-label="Search "
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar por email o ID" aria-label="Search "
       name="filterUsers" [(ngModel)]="filterUsers" (focus)="page = 1" >
     </form>
       
@@ -30,18 +29,19 @@
   </thead>
     <tbody>
       
+      
         <tr align="center"  *ngFor="let user of usuarios | filterUser: filterUsers |
-        paginate: {itemsPerPage: 10, currentPage: page} ">
+        paginate: {itemsPerPage: 5, currentPage: page} ">
           <td> {{user.id}} </td>
-          <td> {{user.roles_id}}  </td>
+          <td> {{user.roles_id}}  </td> 
           <td> {{user.name}} </td>
           <td> {{user.surname}} </td>
           <td> {{user.email}} </td>
           <td> {{user.telefono}} </td>
-          
           <td> 
             <a class="btn btn-outline-success btn-sm" routerLink="/usuarios-edit/{{user.id}}" > Editar</a>
             <a class="btn btn-outline-danger  btn-sm" style="margin: 1px;" (click)="deleteUsuarios(user.id)">Eliminar</a> 
+            <a class="btn btn-outline-warning btn-sm" routerLink="/ficha/{{user.id}}" > Ficha </a>
           </td> 
         </tr> 
     </tbody>
@@ -49,4 +49,5 @@
     <ul class="pagination justify-content-center">
      <pagination-controls  previousLabel= "Anterior" nextLabel="Siguiente" (pageChange)="page = $event"></pagination-controls>
     </ul>
+  
 </div>

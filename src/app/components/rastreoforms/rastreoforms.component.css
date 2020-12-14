@@ -1,0 +1,28 @@
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.mat-slider {
+  width: 440px;
+}
+
+.T{color:black; 
+  font-size:40px;
+  font-weight:bold;
+  font-style:italic;
+  line-height:30px;
+  letter-spacing:1px;
+  text-transform:capitalize;
+  text-align:center;
+  text-indent:30px;
+ }
+
+
+ 

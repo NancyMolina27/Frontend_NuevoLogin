@@ -1,14 +1,13 @@
 <br>
 <div class="container-small">
 
-  <h2>Lista de Roles Registrados  <a href="roles">
+  <h1>Lista de Roles Registrados  <a href="roles">
    <button type="button" class="btn btn-success float-right">Agregar Rol
-   </button> </a> </h2> 
+   </button> </a> </h1> 
 
  <form class="form-inline my-2 my-lg-0 float-right">
   <input class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search"
   name="filterRole" [(ngModel)]="filterRole" (focus)="page = 1">
-  
 </form>
 
 <br>
@@ -20,7 +19,7 @@
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
       <th scope="col">Descripción</th>
-      <th scope="col"  >Opciones</th>
+      <th scope="col">Opciones</th>
     </tr>
   </thead>
 
@@ -41,4 +40,7 @@
   <ul class="pagination justify-content-center">
     <pagination-controls   previousLabel= "Anterior" nextLabel="Siguiente" (pageChange)="page = $event"></pagination-controls>
    </ul>
+
+ 
+
 </div>

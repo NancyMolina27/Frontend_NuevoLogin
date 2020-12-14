@@ -1,5 +1,5 @@
 <header id="header">
-<div class="navbar navbar-light" style="background-color: #e3f2fd;">
+<div class="navbar navbar-light" style="background-color: #F5D1EF;">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"> 
         <img  src="https://vignette.wikia.nocookie.net/doblaje/images/f/fd/MackCars3.png/revision/latest?cb=20171011021319&path-prefix=es" 
@@ -12,51 +12,52 @@
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="navbar-brand" routerLink="usuarios-table" >Usuarios</a>
-          
           <a class="navbar-brand" routerLink="roles-table"  >Roles</a>
-          <a class="navbar-brand" href="viajes-table"  >Viajes</a>
+          <a class="navbar-brand" routerLink="viajes-table"  >Viajes</a>
+         <!--  <a class="navbar-brand" routerLink="enviar-email"  >Cambiar Contraseña</a> -->
         </li>
       </ul>
 
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
+    <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#"> Notificaciones
-            <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span class="dropdown-item dropdown-header">15 Notifications</span>
             <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
-                <i class="fas fa-envelope mr-2"></i> 4 new messages
-                <span class="float-right text-muted text-sm">3 mins</span>
+              <i class="fas fa-envelope mr-2"></i> 4 new messages
+              <span class="float-right text-muted text-sm">3 mins</span>
             </a>
-            <div class="dropdown-divider"></div>
+        <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
                 <i class="fas fa-users mr-2"></i> 8 friend requests
                 <span class="float-right text-muted text-sm">12 hours</span>
             </a>
-            <div class="dropdown-divider"></div>
+        <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item">
                 <i class="fas fa-file mr-2"></i> 3 new reports
                 <span class="float-right text-muted text-sm">2 days</span>
             </a>
-            <div class="dropdown-divider"></div>
+        <div class="dropdown-divider"></div>
             <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
     </li>
 
-        <ul class="nav nav-tabs" >
-          <li class="nav-item">
-            <a class="navbar-brand">{{identity.name + ' ' + identity.surname}}</a>
-            <a class="navbar-brand">{{identity.roles_id}}   </a>
-            <a class="navbar-brand" [routerLink]="['logout',1]" >Cerrar sesión</a>
-          </li>
-        </ul> 
-  </div>
+    <ul class="nav nav-tabs" >
+      <li class="nav-item">
+        <a class="navbar-brand">{{identity.name + ' ' + identity.surname}}</a>
+        <a class="navbar-brand" > {{identity.roles_id}} </a>
+       
+        <a class="navbar-brand" [routerLink]="['logout',1]" >Cerrar sesión</a>
+       </li>
+    </ul> 
+</div>
 
 
-    <div class="container" id="menu" *ngIf="!identity">
+    <div  id="menu" *ngIf="!identity">
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="navbar-brand" routerLink="login" >Iniciar Sesión</a>

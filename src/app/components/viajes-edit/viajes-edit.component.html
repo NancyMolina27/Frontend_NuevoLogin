@@ -1,59 +1,41 @@
 <div class="mt-4 col-8 offset-2">
   <div class="card border-info mb-3">
     <div class="card-header bg-light-gray">
-      <h3 class="card-title text-center" >Registro de Viajes</h3>
+      <h3 class="card-title text-center" > Viajes</h3>
     </div>
   
   <div class="card-body">
     <form #viajesForm=ngForm (ngSubmit)="onSubmit(viajesForm)">
-  
-      <div class="alert alert-success" *ngIf="status_viaje == 'success'">
-        Viaje registrado correctamente
-      </div>
-  
-      <div class="alert alert-danger" *ngIf="status_viaje == 'error'">
-        Viaje no registrado, verificar datos!
-      </div>
-  
-      <div class="form-group row">
-        <label for="role" class="col-sm-2 col-form-label">Cliente</label>
-        <div class="col-sm-7">
-          
-          <select class="form-control" required  
-           [(ngModel)]="viaje.cliente" name="cliente" >
-           
-            <option selected disabled >Elige un cliente...</option>
-            <option value={{rol.name}} *ngFor="let rol of misuser" > {{rol.name}} {{rol.surname}} </option>
-          </select>
-        </div>
-      </div>
 
-  
+      <div class="form-group row ">
+        <label for="cliente" class="col-sm-2 col-form-label">cliente</label>
+          <div class="col-sm-7">
+            <input class="form-control" required    id="cliente" placeholder="cliente"  
+             [(ngModel)]="viaje.cliente" name="cliente" >
+          </div>
+        </div>
+
       <div class="form-group row ">
       <label for="operador" class="col-sm-2 col-form-label">Operador</label>
         <div class="col-sm-7">
-          <select class="form-control" required    id="operador"
+          <input class="form-control" required    id="operador" placeholder="Operador"  
            [(ngModel)]="viaje.operador" name="operador" >
-            <option selected disabled >Elige un operador...</option>
-            <option value={{rol.name}} *ngFor="let rol of user"> {{rol.name}} {{rol.surname}} </option>
-          </select>
         </div>
       </div>
-
 
       <div class="form-group row ">
         <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
           <div class="col-sm-7">
             <input type="date" name="fecha"  class="form-control" id="fecha" placeholder="Fecha" 
-             [(ngModel)]="viaje.fecha" required>
+             [(ngModel)]="viaje.fecha" required >
           </div>
       </div>
 
-      <div class="form-group row">
+      <div class="form-group row ">
         <label for="hora" class="col-sm-2 col-form-label">Hora</label>
           <div class="col-sm-7">
             <input type="time" name="hora"  class="form-control" id="hora" placeholder="hora" 
-             [(ngModel)]="viaje.hora" required>
+             [(ngModel)]="viaje.hora" required >
           </div>
       </div>
 
@@ -61,36 +43,50 @@
         <label for="lugar_recibido" class="col-sm-2 col-form-label">Lugar recibido</label>
           <div class="col-sm-7">
             <input type="text" name="lugar_recibido"  class="form-control" id="lugar_recibido" placeholder="Lugar recibido" 
-             [(ngModel)]="viaje.lugar_recibido" required>
+            [(ngModel)]="viaje.lugar_recibido" required >
           </div>
       </div>
+     
 
       <div class="form-group row ">
         <label for="lugar_destino" class="col-sm-2 col-form-label">Lugar destino</label>
           <div class="col-sm-7">
             <input type="text" name="lugar_destino"  class="form-control" id="lugar_destino" placeholder="Lugar destino" 
-            [(ngModel)]="viaje.lugar_destino" required>
+            [(ngModel)]="viaje.lugar_destino" required >
           </div>
       </div>
+
 
       <div class="form-group row ">
         <label for="contenido" class="col-sm-2 col-form-label">Contenido</label>
           <div class="col-sm-7">
             <input type="text" name="contenido"  class="form-control" id="contenido" placeholder="contenido" 
-             [(ngModel)]="viaje.contenido" required>
+             [(ngModel)]="viaje.contenido" required >
           </div>
       </div>
 
+      <div class="form-group row ">
+        <label for="comentarios" class="col-sm-2 col-form-label">Comentarios</label>
+          <div class="col-sm-7">
+            <textarea type="text" name="comentarios"  class="form-control" id="comentarios" placeholder="comentarios" 
+             [(ngModel)]="viaje.comentarios">
+            </textarea>
+          </div>
+      </div>
 
       <div class="form-group row">
         <div class="col-sm-10 offset-2">
-            <button type="submit" class="btn btn-primary" [disabled]="!viajesForm.valid">Registrar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
           </div>
       </div>
+ 
+      
 
-  
-  
+     
+
+      
     </form>
   </div>
   </div>
   </div>
+

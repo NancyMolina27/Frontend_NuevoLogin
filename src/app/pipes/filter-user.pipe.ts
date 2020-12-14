@@ -11,13 +11,19 @@ export class FilterUserPipe implements PipeTransform {
     const resultUser = [];
     for (const post of value)
       {
-        if (post.email.toLowerCase().indexOf(arg.toLowerCase()) > -1)
-        {
-          resultUser.push(post);
-        }
+       if (post.email.toLowerCase().indexOf(arg.toLowerCase()) > -1)
+      {
+        resultUser.push(post);
+      }
+
+      // Busqueda por id
+       post.id = post.id.toString();
+       if (post.id.indexOf(arg) > -1)
+      {
+        resultUser.push(post);
+      }
 
       }
     return resultUser;
   }
-
 }

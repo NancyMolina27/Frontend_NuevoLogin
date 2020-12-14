@@ -9,6 +9,6 @@
 
 .ng-valid:not(form)
 {
-  border-right:4px ridge green;
+  border-right:6px groove rgb(30, 222, 0);
 }
 

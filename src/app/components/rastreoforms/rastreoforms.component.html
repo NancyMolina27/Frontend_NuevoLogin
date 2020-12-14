@@ -1,0 +1,105 @@
+<div class="mt-4 col-8 offset-2">
+  <div class="card border-info mb-3">
+    <div class="card-header bg-light-gray">
+      <h3 class="card-title text-center" class="T" >  Rastreo deViajes</h3>
+    </div>
+  
+  <div class="card-body">
+    <form #viajesForm=ngForm (ngSubmit)="onSubmit(viajesForm)">
+  
+      <div class="form-group row ">
+      <label for="operador" class="col-sm-2 col-form-label" >Operador</label>
+        <div class="col-sm-7">
+          <input class="form-control" required    id="operador" placeholder="Operador"  readonly
+           [(ngModel)]="viaje.operador" name="operador" >
+        </div>
+      </div>
+
+      <div class="form-group row ">
+        <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
+          <div class="col-sm-7">
+            <input type="text" name="fecha"  class="form-control" id="fecha" placeholder="Fecha" 
+             [(ngModel)]="viaje.fecha" required readonly>
+          </div>
+      </div>
+
+      <div class="form-group row ">
+        <label for="hora" class="col-sm-2 col-form-label">Hora</label>
+          <div class="col-sm-7">
+            <input type="text" name="hora"  class="form-control" id="hora" placeholder="hora" 
+             [(ngModel)]="viaje.hora" required readonly>
+          </div>
+      </div>
+
+      <div class="form-group row ">
+        <label for="lugar_destino" class="col-sm-2 col-form-label">Lugar destino</label>
+          <div class="col-sm-7">
+            <input type="text" name="lugar_destino"  class="form-control" id="lugar_destino" placeholder="Lugar destino" 
+            [(ngModel)]="viaje.lugar_destino" required readonly>
+          </div>
+      </div>
+
+      <div class="form-group row ">
+        <label for="contenido" class="col-sm-2 col-form-label">Contenido</label>
+          <div class="col-sm-7">
+            <input type="text" name="contenido"  class="form-control" id="contenido" placeholder="contenido" 
+             [(ngModel)]="viaje.contenido" required readonly>
+          </div>
+      </div>
+
+      <div class="form-group row ">
+        <label for="comentarios" class="col-sm-2 col-form-label">Comentarios</label>
+          <div class="col-sm-7">
+            <textarea type="text" name="comentarios"  class="form-control" id="comentarios" placeholder="comentarios" 
+             [(ngModel)]="viaje.comentarios">
+            </textarea>
+          </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-10 offset-2">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </div>
+      </div>   
+    </form>
+
+    
+      <mat-card-content>
+        <h2 class="example-h2">Rastreo de Envio</h2>
+    
+        <section class="example-section" *ngIf="mode === 'determinate' || mode === 'buffer'">
+          <label class="example-margin">Progreso:</label>
+          <mat-slider  class="example-margin" [(ngModel)]="value" 
+            thumbLabel
+            [displayWith]="formatLabel"
+            tickInterval="10"
+            min="0"
+            max="100"></mat-slider>
+            
+        </section>
+        
+        <h2 class="example-h2">Result</h2>
+        <section class="example-section">
+          
+          <mat-progress-bar
+              class="example-margin"
+              [color]="color"
+              [mode]="mode"
+              [value]="value"
+              [bufferValue]="bufferValue">
+          </mat-progress-bar>
+        </section>
+        
+        <span style="color: rgb(2, 0, 0); float: left; width:15%; text-align: left; "> Recogiendo </span>
+        <span style="color: rgb(244, 40, 87); float: right; width:50%; text-align: right;"> Entregado </span>
+        <span  class="text-center" style="color: rgb(21, 131, 249); float: right; width:98%; text-align: center; "> En camino </span>
+      </mat-card-content>
+    
+  </div>
+  </div>
+  </div>
+
+  
+
+
+  

@@ -1,11 +1,65 @@
 <br>
         <div class="container-small">
         
-          <h2>Lista de Viajes Registrados  <a href="viajes">
+          <h1>Lista de Viajes Registrados  <a href="viajes">
            <button type="button" class="btn btn-success float-right">Agregar Viaje
-           </button> </a> </h2> 
+           </button> </a> 
+          </h1> 
+
+          <br>      
+          <form class="form-inline my-2 my-lg-0 float-right">
+            <input  class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
+                    name="filterRastreos" [(ngModel)]="filterRastreos" (focus)="page = 1">
+          </form>
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Rastrear Viaje</button>
          <br>
-        
+         <br>
+
+                 <!--  Modal para Buscar -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title" id="exampleModalLabel">Rastrear Viaje </h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label" placeholder="ingresa operador">Filtrar por:</label>
+                    <select class="form-control" required >
+                        <option >ID</option>
+                        <option >Cliente</option>
+                        <option >Operador</option>
+                        <option >Fecha</option>
+                        <option >Hora</option>
+                        <option >Origen</option>
+                        <option >Destino</option>
+                        <option >Contenido</option>
+                    </select> 
+                  </div>
+
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label" placeholder="ingresa operador">Número de Rastreo:</label>
+                    <input  class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
+                    name="filterRastreos" [(ngModel)]="filterRastreos" (focus)="page = 1">
+                  </div>
+                  
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"  >Buscar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+<!-- Fin del Modal para Buscar -->
+
           <table class="table table-bordered">
           <thead>
             <tr align="center" class="table-warning">
@@ -18,13 +72,13 @@
               <th scope="col">Origen</th>
               <th scope="col">Destino</th>
               <th scope="col">Contenido</th>
-              <th scope="col">Comentarios</th>
+              
               <th scope="col">Opciones</th>
             </tr>
           </thead>
           
             <tbody>
-              <tr align="center" *ngFor="let viaje of viaje">
+              <tr align="center" *ngFor="let viaje of viaje| filterRastreo:filterRastreos">
                 
                 <td>{{viaje.id}}</td>
                 <td>{{viaje.user_id}}</td>
@@ -35,8 +89,9 @@
                 <td>{{viaje.lugar_recibido}}</td>
                 <td>{{viaje.lugar_destino}}</td>
                 <td>{{viaje.contenido}}</td>
-                <td>{{viaje.comentarios}}</td>
+                
                 <td>
+                  <a class="btn btn-outline-primary btn-sm" routerLink="/rastreoform/{{viaje.id}}" > Ver</a>
                   <a class="btn btn-outline-success btn-sm" routerLink="/viajes-edit/{{viaje.id}}" > Editar</a>
                   <a class="btn btn-outline-danger  btn-sm" style="margin: 1px;" (click)="deleteViaje(viaje.id)">Eliminar</a> 
                 </td>

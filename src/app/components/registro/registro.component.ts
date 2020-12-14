@@ -47,16 +47,31 @@ export class RegistroComponent implements OnInit {
           // Vaciar formulario
           this.user = new User( 1, '', '', '', '', '', '');
           registerForm.reset();
+          Swal.fire(
+            'Registro Guardado!',
+            'El registro ha sido guardado correctamente',
+            'success'
+          );
           this.router.navigate(['usuarios-table']);
         }else
         {
+          Swal.fire(
+            'Registro no se pudo guardar!',
+            'El registro no ha sido guardado, verifica tus datos',
+            'error'
+          );
           this.status_user = 'error';
         }
       },
       error => {
+        Swal.fire(
+          'Registro no se pudo guardar!',
+          'El registro no ha sido guardado',
+          'error'
+        );
         this.handleError(error);
       });
-  }
+    }
 
   // tslint:disable-next-line:typedef
   getRoles(): void {
@@ -65,12 +80,13 @@ export class RegistroComponent implements OnInit {
           this.misroles = response.roles;
       },
       error => {
+        console.log(error);
         this.handleError(error);
       }
     );
   }
 
   handleError(error): void {
-    this.error = error.status;
+    this.error = error.error.errors;
   }
 }

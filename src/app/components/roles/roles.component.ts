@@ -41,18 +41,6 @@ public error: any = [];
 
   onSubmit(form): void
   {
-
-      Swal.fire({
-        title: '¿Desea guardar este registro?',
-        text: 'Se guardara el registro',
-        icon: 'success',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, guardar',
-        cancelButtonText: 'Cancelar',
-      }).then((result) => {
-        if (result.isConfirmed) {
         this.rolesservices.create(this.token, this.roles).subscribe(
           respose =>
           {
@@ -62,12 +50,16 @@ public error: any = [];
               this.status_rol = 'success';
               this.router.navigate(['roles-table']);
             }else{
+              Swal.fire(
+                'Registro no se pudo guardar!',
+                'El registro no ha sido guardado, nombre duplicado',
+                'error');
               this.status_rol = 'error';
             }
           }, error => {
             Swal.fire(
               'Registro no se pudo guardar!',
-              'El registro no ha sido guardado, Nombre duplicado',
+              'El registro no ha sido guardado, nombre duplicado',
               'error'
             );
             this.handleError(error);
@@ -79,20 +71,11 @@ public error: any = [];
             'El registro ha sido guardado correctamente',
             'success'
           );
-        }else
-        {
-          Swal.fire(
-            'Registro no guardado!',
-            'El registro no ha sido guardado',
-            'error'
-          );
         }
-      });
-  }
-
   handleError(error): void
   {
-    this.error = error.error.errors;
+    this.error = error.error.ERROR;
+    console.log(this.error);
   }
 
 }

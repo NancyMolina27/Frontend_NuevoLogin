@@ -5,16 +5,7 @@
     </div>
     <div class="card-body">
 
-
-      <div class="alert alert-success" *ngIf="status_user == 'success'">
-        El registro se completado correctamente. 
-      </div>
-
-      <div class="alert alert-danger" *ngIf="status_user == 'error'">
-        El registro no se completo correctamente, verifica tus datos. 
-      </div>
-
-      <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" >
         
         <div class="form-group row">
           <label for="name" class="col-sm-2 col-form-label">Nombre</label>
@@ -52,11 +43,11 @@
         <div class="form-group row">
           <label for="password" class="col-sm-2 col-form-label"> Contraseña</label>
           <div class="col-sm-10">
-            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" pattern=".{6,}"
-            #password="ngModel" [(ngModel)]="user.password" required >
-            <div class="alert alert-danger" [hidden]="!error.password">
-              {{error.password}}
-            </div>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Contraseña" pattern=".{8,}"
+            #password="ngModel" [(ngModel)]="user.password" required>
+            <span  class="alert-danger" ng-messages="!registerForm.password.$error">
+              <p  style="pointer-events: none;" ng-message="minlength">La contraseña debe tener mínimo 8 carácteres </p>
+            </span>
           </div>
         </div>
 
@@ -79,7 +70,7 @@
         <div class="form-group row">
           <label for="telefono" class="col-sm-2 col-form-label">Teléfono</label>
           <div class="col-sm-10">
-            <input type="text" name="telefono" class="form-control" id="telefono" placeholder="Teléfono"  pattern=".{10,}"
+            <input type="number" name="telefono" class="form-control" id="telefono" placeholder="Teléfono"  pattern=".{10,}"
             #telefono="ngModel" [(ngModel)]="user.telefono"  required>
             <div class="alert alert-danger" [hidden]="!error.telefono">
               {{error.telefono}}
@@ -87,11 +78,13 @@
           </div>
         </div>
 
-      
+        
 
         <div class="form-group row">
           <div class="col-sm-10 offset-2"> 
-             <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid">Registrar</button>
+            
+             <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid"
+             >Registrar</button>
             </div>
         </div>
 

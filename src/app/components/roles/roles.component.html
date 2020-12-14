@@ -7,14 +7,6 @@
 <div class="card-body">
   <form #rolesForm=ngForm (ngSubmit)="onSubmit(rolesForm)">
 
-    <div class="alert alert-success" *ngIf="status_rol == 'success'">
-      Rol registrado correctamente
-    </div>
-
-    <div class="alert alert-danger" *ngIf="status_rol == 'error'">
-      Rol no registrado, verificar datos!
-    </div>
-
     <div class="form-group row ">
     <label for="name" class="col-sm-2 col-form-label">Nombre</label>
       <div class="col-sm-7">

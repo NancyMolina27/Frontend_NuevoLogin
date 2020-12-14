@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { GLOBAL } from './global';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ export class UserService {
   public url: string;
   public identity;
   public token;
+
   constructor(
     public http: HttpClient
   ) {
@@ -67,10 +68,8 @@ export class UserService {
     const token = localStorage.getItem('token');
     if (token !== 'undefined'){
       this.token = token;
-
     }else{
       this.token = null;
-
     }
     return this.token;
   }
@@ -112,6 +111,12 @@ export class UserService {
     return this.http.post(this.url + 'operador', {headers});
   }
 
+  getRol(): Observable<any>
+  {
+    const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post(this.url + 'rol', {headers});
+  }
+
   sendEmail(data): Observable <any>
   {
     return this.http.post(this.url + 'reset-password', data);
@@ -121,5 +126,6 @@ export class UserService {
   {
     return this.http.post(this.url + 'cambiar-contraseña', data);
   }
+
 
 }

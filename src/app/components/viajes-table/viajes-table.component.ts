@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ViajesService } from './../../services/viajes.service';
 import { Component, OnInit } from '@angular/core';
 import { Viaje } from 'src/app/models/viajes';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-viajes-table',
@@ -11,8 +12,11 @@ import { Viaje } from 'src/app/models/viajes';
   providers: [UserService, ViajesService]
 })
 export class ViajesTableComponent implements OnInit {
+  filterRastreos = '';
+
   page = 1;
   public token;
+  public identity;
   public viaje: Viaje;
   // tslint:disable-next-line:variable-name
   public status_viaje;
@@ -24,16 +28,20 @@ export class ViajesTableComponent implements OnInit {
     private userservices: UserService
   ) {
     this.token = this.userservices.getToken();
+    this. identity = this.userservices.getIdentity();
    }
 
   ngOnInit(): void {
+    if (this.identity == null){
+      this.router.navigate(['login']);
+    }
     this.getViaje();
   }
 
   // tslint:disable-next-line:typedef
   getViaje()
     {
-      this.viajeservices.getViajes().subscribe(
+      this.viajeservices.getViajes(this.token).subscribe(
         response => {
           if (response.status === 'success')
           {
@@ -49,17 +57,39 @@ export class ViajesTableComponent implements OnInit {
   // tslint:disable-next-line:typedef
   deleteViaje(id)
   {
-    if (confirm ('¿Seguro desea elimar este registro?')){
-    this.viajeservices.delete(this.token, id).subscribe(
-      response => {
-        alert('Eliminado con éxito');
-        this.getViaje();
-      },
-      error => {
-        console.log(error as any);
+    Swal.fire({
+      title: '¿Seguro desea elimar este registro?',
+      text: 'Se eliminara el viaje',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.viajeservices.delete(this.token, id).subscribe(
+          response => {
+            this.getViaje();
+          },
+          error => {
+            console.log(error as any);
+          }
+        );
+        Swal.fire(
+          'Eliminado!',
+          'El registro ha sido eliminado correctamente',
+          'success'
+        );
+      }else
+      {
+        Swal.fire(
+          'Registro no eliminado!',
+          'El registro no ha sido eliminado',
+          'error'
+        );
       }
-    );
-    }
+    });
   }
 
 }
