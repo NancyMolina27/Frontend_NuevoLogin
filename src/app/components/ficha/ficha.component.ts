@@ -100,7 +100,7 @@ export class FichaComponent implements OnInit {
   }
 
 
-exportAsPDF(divId): void
+/* exportAsPDF(divId): void
     {
         const data = document.getElementById('divId');
         html2canvas(data).then(canvas => {
@@ -110,6 +110,6 @@ exportAsPDF(divId): void
         pdf.addImage(contentDataURL, 'PNG', 0, 0, 29.7, 21.0);
         pdf.save('Filename.pdf');
       });
-    }
+    } */
 
 }

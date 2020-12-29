@@ -19,6 +19,7 @@ import { ViajesTableComponent } from './components/viajes-table/viajes-table.com
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { ViajesComponent } from './components/viajes/viajes.component';
 import { FichaComponent } from './components/ficha/ficha.component';
+import { ImagenComponent } from './components/imagen/imagen.component';
 
 const appRoutes: Routes =
 [
@@ -95,6 +96,11 @@ const appRoutes: Routes =
    {
     path: 'cambiar-contraseña',
     component: ResponsePasswordComponent,
+
+   },
+   {
+    path: 'imagen',
+    component: ImagenComponent,
 
    },
 ];

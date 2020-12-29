@@ -33,7 +33,11 @@ import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import { FichaComponent } from './components/ficha/ficha.component';
+import { ImagenComponent } from './components/imagen/imagen.component';
 
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,7 @@ import { FichaComponent } from './components/ficha/ficha.component';
     FilterRastreoPipe,
     RastreoformsComponent,
     FichaComponent,
+    ImagenComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,9 @@ import { FichaComponent } from './components/ficha/ficha.component';
     MatCardModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatGridListModule
 
   ],
   providers: [],
