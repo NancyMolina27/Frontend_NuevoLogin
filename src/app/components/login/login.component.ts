@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService
      ) {
-    this.user = this.user = new User(0, 'ROlE_USER', '', '', '', '', '');
+    this.user = this.user = new User(0, 'ROlE_USER', '', '', '', '', '', '');
    }
 
   public user: User;

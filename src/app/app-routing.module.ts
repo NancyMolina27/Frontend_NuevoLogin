@@ -18,7 +18,6 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { ViajesTableComponent } from './components/viajes-table/viajes-table.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { ViajesComponent } from './components/viajes/viajes.component';
-import { FichaComponent } from './components/ficha/ficha.component';
 import { ImagenComponent } from './components/imagen/imagen.component';
 
 const appRoutes: Routes =
@@ -47,11 +46,6 @@ const appRoutes: Routes =
    {
     path: 'usuarios-edit/:id',
     component: UsuariosEditComponent,
-
-   },
-   {
-    path: 'ficha/:id',
-    component: FichaComponent,
 
    },
    {

@@ -28,7 +28,7 @@ export class RegistroComponent implements OnInit {
   ) {
     this.identity = this.userServices.getIdentity();
     this.getRoles();
-    this.user = new User( 1, '', '', '', '', '', '');
+    this.user = new User( 1, '', '', '', '', '', '', '');
   }
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class RegistroComponent implements OnInit {
         {
           this.status_user = response.status;
           // Vaciar formulario
-          this.user = new User( 1, '', '', '', '', '', '');
+          this.user = new User( 1, '', '', '', '', '', '', '');
           registerForm.reset();
           Swal.fire(
             'Registro Guardado!',

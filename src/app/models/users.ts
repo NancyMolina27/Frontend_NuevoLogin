@@ -8,7 +8,9 @@ export class User {
     public email: string,
     public telefono: string,
     public password: string,
+    public profilePic: string,
 
-  ){}
+  ){ }
 
 }
+

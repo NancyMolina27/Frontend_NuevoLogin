@@ -1,46 +1,63 @@
+import { Imagen } from './../models/imagen';
 import { GLOBAL } from './global';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadFilesService {
-
-  // Url obtenida de la variable de enviroments
-  url = GLOBAL.url;
-
-
-  // Inyeccion de HttpClient
+  public url: string;
   constructor(
-    public http: HttpClient
-  ) {
-    this.url = GLOBAL.url;
+     public http: HttpClient
+    ) {
+      this.url = GLOBAL.url;
     }
-
-  // Metodo que envia los archivos al endpoint /upload
-  upload(file: File): Observable <HttpEvent<any>>{
-    const formData: FormData = new FormData();
-    formData.append('files', file);
-
-    const req = new HttpRequest('POST', `${this.url}/upload`, formData, {
-      reportProgress: true,
-      responseType: 'json'
-    });
-    return this.http.request(req);
+    // tslint:disable-next-line:typedef
+    pruebas()
+  {
+    return 'hola mundo';
   }
 
-  // Metodo para Obtener los archivos
-  getFiles(): any {
-    return this.http.get(`${this.url}/files`);
+  create(Token, imagen: Imagen): Observable<any> {
+    const json = JSON.stringify(imagen);
+    const params = 'json=' + json;
+
+    const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+                                      .set('Authorization', Token);
+
+    return this.http.post(this.url + 'imagen', params, {headers});
   }
 
-  // Metodo para borrar los archivos
-  deleteFile(filename: string): any{
-    return this.http.get(`${this.url}/delete/${filename}`);
+  getImagenes(): Observable<any>
+  {
+    const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.get(this.url + 'imagen', {headers});
   }
 
+  getImagen(id): Observable<any>
+  {
+    return this.http.get(this.url + 'imagen/' + id);
+  }
+
+  update(token, imagen, id): Observable<any>
+  {
+    const json = JSON.stringify(imagen);
+    const params = 'json=' + json;
+    const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    .set('Authorization', token);
+
+    return this.http.put(this.url + 'imagen/' + id, params, {headers});
+  }
+
+  delete(token, id): Observable <any>
+  {
+    const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    .set('Authorization', token);
+
+    return this.http.delete(this.url + 'imagen/' + id, {headers});
+  }
 
 
 }

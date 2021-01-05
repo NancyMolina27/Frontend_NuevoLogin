@@ -27,6 +27,7 @@
     "jquery": "^3.5.1",
     "jspdf": "^2.2.0",
     "ngx-pagination": "^5.0.0",
+    "pdfmake": "^0.1.69",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.3",
     "sweetalert2": "^10.8.1",

@@ -24,6 +24,9 @@ import { FilterRastreoPipe } from './pipes/filter-rastreo.pipe';
 import { RastreoformsComponent } from './components/rastreoforms/rastreoforms.component';
 import { BrowserModule } from '@angular/platform-browser';
 
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSliderModule} from '@angular/material/slider';
@@ -32,10 +35,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import { FichaComponent } from './components/ficha/ficha.component';
 import { ImagenComponent } from './components/imagen/imagen.component';
-
-
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 
@@ -60,7 +60,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FilterRolesPipe,
     FilterRastreoPipe,
     RastreoformsComponent,
-    FichaComponent,
     ImagenComponent,
   ],
   imports: [
