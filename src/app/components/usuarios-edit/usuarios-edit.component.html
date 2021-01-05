@@ -78,10 +78,10 @@
              <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid">Registrar</button>
 
              <button (click)="registerForm.valid ? generatePdf('open') : ''"
-             class="btn btn-outline-warning">Open PDF</button>
+             class="btn btn-outline-warning"> <i class="fas fa-file-pdf"> </i> Abrir PDF </button>
 
               <button (click)="registerForm.valid ? generatePdf('download') : ''"
-              class="btn btn-outline-secondary">Download PDF</button>
+              class="btn btn-outline-secondary"> <i class="fas fa-file-download"></i> Descargar PDF</button>
 
             </div>
         </div>
@@ -114,6 +114,15 @@
             <img *ngIf="user.profilePic" [src]="user.profilePic" class="img-thumbnail">
           </div>
         </div> -->
+
+        <div class="card p-4">
+          <div class="form-group">
+            <label class="h4 mb-3" for="">Foto que se verá en tu Perfil</label>
+            <input type="file" class="form-control-file" (change)="fileChanged($event)" aria-describedby="fileHelpId">
+          </div>
+          <img *ngIf="user.profilePic" [src]="user.profilePic" class="img-thumbnail">
+        </div>
+
 
       </form>
     </div>

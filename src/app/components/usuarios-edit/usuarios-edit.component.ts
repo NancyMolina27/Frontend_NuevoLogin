@@ -159,18 +159,19 @@ export class UsuariosEditComponent implements OnInit {
 
         {
           columns : [
-              { qr: 'Nombre: ' + this.user.name + this.user.surname + ', Numero Telefonico : ' + this.user.telefono, fit : 100 },
+              { qr: 'Nombre: ' + this.user.name + this.user.surname +
+              ',Telefono : ' + this.user.telefono, fit : 100 },
               {
               text: `(${this.user.name}, ${this.user.surname} )`,
               alignment: 'right',
-              margin: [20, 20, 20, 10],
+              margin: [0, 20, 0, 10],
               }
           ]
         }
       ],
       info: {
         title: this.user.name + 'PERFIL OPERADOR',
-        author: this.user.name,
+        author: this.user.name && this.user.surname,
         subject: 'PERFIL OPERADOR',
         keywords: 'PERFIL OPERADOR, ONLINE RESUME',
       },
@@ -209,7 +210,8 @@ export class UsuariosEditComponent implements OnInit {
     if (this.user.profilePic) {
       return {
         image: this.user.profilePic ,
-        width: 75,
+        width: 200,
+        height: 200,
         alignment : 'right'
       };
     }
