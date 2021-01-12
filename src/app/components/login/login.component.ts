@@ -145,8 +145,6 @@ export class LoginComponent implements OnInit {
 
 }
 
-
-
 export interface FormModel {
   captcha?: string;
 }
