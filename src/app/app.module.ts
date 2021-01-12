@@ -23,19 +23,23 @@ import { FilterRolesPipe } from './pipes/filter-roles.pipe';
 import { FilterRastreoPipe } from './pipes/filter-rastreo.pipe';
 import { RastreoformsComponent } from './components/rastreoforms/rastreoforms.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ImagenComponent } from './components/imagen/imagen.component';
+
+import { NgxCaptchaModule } from 'ngx-captcha';
+
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSliderModule} from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
-import { ImagenComponent } from './components/imagen/imagen.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 
@@ -68,6 +72,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
+    NgxCaptchaModule,
+    ReactiveFormsModule,
+
     BrowserAnimationsModule,
     MatSliderModule,
     MatProgressBarModule,
@@ -76,7 +83,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+
 
   ],
   providers: [],

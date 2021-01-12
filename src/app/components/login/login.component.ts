@@ -4,41 +4,58 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/users';
 import Swal from 'sweetalert2';
 
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RecaptchaErrorParameters } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  styles: [
+    `
+      .error {
+        color: crimson;
+      }
+      .success {
+        color: green;
+      }
+    `,
+  ],
 })
 export class LoginComponent implements OnInit {
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private userService: UserService
-     ) {
-    this.user = this.user = new User(0, 'ROlE_USER', '', '', '', '', '', '');
-   }
 
   public user: User;
   public token;
   public identity;
   public status;
   hide = true;
+  public formModel: FormModel = {};
+  // Captcha
+  siteKey: string;
+  size: string;
+  public aFormGroup: FormGroup;
 
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
 
-  matcher = new MyErrorStateMatcher();
-
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
+    private formBuilder: FormBuilder
+     ) {
+    this.user = this.user = new User(0, 'ROlE_USER', '', '', '', '', '', '');
+    /* this.siteKey = '6Le_pikaAAAAAIwCQsOaGagi5XpfyeWTdpFzCqqL';
+    this.size = 'normal'; */
+   }
   ngOnInit(): void {
+    this.aFormGroup = this.formBuilder.group({
+      recaptcha: ['', Validators.required]
+    });
     this.logout();
   }
-
   // tslint:disable-next-line:typedef
   onSubmit(form)
   {
@@ -92,7 +109,6 @@ export class LoginComponent implements OnInit {
             }
           );
   }
-
   // tslint:disable-next-line:typedef
   logout(){
 
@@ -118,11 +134,19 @@ export class LoginComponent implements OnInit {
     ); // subscribe
   }
 
+  public resolved(captchaResponse: string): void {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
+  }
+
+  public onError(errorDetails: RecaptchaErrorParameters): void {
+    console.log(`reCAPTCHA error encountered; details:`, errorDetails);
+  }
+
+
 }
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
+
+
+export interface FormModel {
+  captcha?: string;
 }

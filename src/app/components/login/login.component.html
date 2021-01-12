@@ -23,16 +23,48 @@
           </div>
         </div>
 
+          
 
        <!-- Botones -->
         <div class="form-group row">
           <div class="col-sm-10 offset-2">
             <button type="submit" class="btn btn-primary" 
-            [disabled]="!loginForm.valid">Iniciar Sesión</button>
+            [disabled]="!captchaProtectedForm.valid">Iniciar Sesión</button>
           </div>
         </div>
-      
-      
+
+ <!--        <form [formGroup]="aFormGroup">
+          <ngx-recaptcha2 #captchaElem
+            [siteKey]="siteKey"
+            [useGlobalDomain]="false"
+            (resolved)="resolved($event)"
+            (error)="onError($event)"
+            errorMode="handled"
+            formControlName="recaptcha">
+          </ngx-recaptcha2>
+        </form> -->
+        
+        <form #captchaProtectedForm="ngForm">
+          <ngx-recaptcha2
+            [(ngModel)]="formModel.captcha"
+            name="captcha"
+            required
+            siteKey="6Le_pikaAAAAAIwCQsOaGagi5XpfyeWTdpFzCqqL"
+            #captchaControl="ngModel"
+          ></ngx-recaptcha2>
+          <div [hidden]="captchaControl.valid || captchaControl.pristine" class="error">
+            Captcha debe resolverse
+          </div>
+          <div [hidden]="!captchaControl.valid" class="success">Captcha es valido</div>
+          <div [hidden]="captchaProtectedForm.form.valid" class="error">
+            El formulario debe ser llenado completamente
+          </div>
+          <div [hidden]="!captchaProtectedForm.form.valid" class="success">
+            El formulario es valido
+          </div>
+         
+        </form>
+
 
         <small class="float-right">
           <a href="enviar-email">Olvide mi contraseña</a>
